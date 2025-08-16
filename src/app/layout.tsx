@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Infoweb-Atividade",
-  description: "Atividade 1 do 2o bimestre com hook reducer e shadcnui",
+  title: "Gerenciador de tarefas",
+  description: "Gistema de gerenciamento de tarefas",
 };
 
 export default function RootLayout({
@@ -29,8 +29,8 @@ export default function RootLayout({
         style={{backgroundColor: '#001326ff', color: '#e9ecf7'}}
       >
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', padding: '1em' }}>
-          <header style={{ marginBottom: '2em', padding: '1.5em', background: '#0e315cff', color: '#e9ecf7', borderRadius: '.5em', boxShadow: '0 6px 18px #0004' }}>
-            <h1 style={{ fontSize: '30px', textAlign: 'center', margin: 0, fontWeight: 650, color: '#e9ecf7' }}>Infoweb - Atividade 1 do 2o bimestre</h1>
+          <header style={{ marginBottom: '2em', padding: '1.5em', background: '#b8b8b8ff', color: '#e9ecf7', borderRadius: '.5em', boxShadow: '0 6px 18px #0004' }}>
+            <h1 style={{ fontSize: '30px', textAlign: 'center', margin: 0, fontWeight: 650, color: '#e9ecf7' }}>Gerenciador de tarefas</h1>
           </header>
           <main style={{ flex: 1, padding: '1.5em', borderRadius: '.5em', color: '#e9ecf7' }}>{children}</main>
           <footer style={{ marginTop: '2em', padding: '1.5em', background: '#00040aff', color: '#e9ecf7', borderRadius: '.5em', fontSize: '14px', boxShadow: '0 6px 18px #0004' }}>
