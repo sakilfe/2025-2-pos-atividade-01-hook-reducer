@@ -1,56 +1,31 @@
-
 "use client";
-import { useState, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
-import FormularioTarefa from "../../../../components/TarefaFormulario";
-import type { Tarefa } from "../../../../types/tarefa";
-import Link from "next/link";
+
+import Layout from "@/components/arquivo";
+import { useTarefas } from "@/lib/tarefaContext";
+import { Tarefa } from "@/types/tarefa";
+import { useParams, useRouter } from "next/navigation";
 
 export default function ApagarTarefaPage() {
+  const { tarefas, dispatch } = useTarefas();
   const router = useRouter();
   const params = useParams();
-  const id = Array.isArray(params.id) ? params.id[0] : params.id;
-  const [tarefa, setTarefa] = useState<Tarefa | null>(null);
+  const id = params?.id as string;
 
-  useEffect(() => {
-    const tarefas = JSON.parse(localStorage.getItem('tarefas') || '[]');
-    const encontrada = tarefas.find((t: Tarefa) => t.id === id);
-    if (encontrada) setTarefa(encontrada);
-    else router.push('/tarefas');
-  }, [id, router]);
+  const task = tarefas.find((t: Tarefa) => t.id === id);
 
-  function apagarTarefa() {
-    const tarefas = JSON.parse(localStorage.getItem('tarefas') || '[]');
-    const novas = tarefas.filter((t: Tarefa) => t.id !== id);
-    localStorage.setItem('tarefas', JSON.stringify(novas));
-    router.push('/tarefas');
-  }
+  const handleDelete = () => {
+    dispatch({ type: "DELETE_TASK", payload: id });
+    router.push("/tarefas");
+  };
 
-  if (!tarefa) return null;
+  if (!task) return <Layout><p>Tarefa não encontrada.</p></Layout>;
 
   return (
-    <div>
-      <Link href="/tarefas" style={{
-        display: 'inline-block',
-        margin: '1em 0 0 1em',
-        background: '#420a0aff',
-        color: '#e9ecf7',
-        border: 'none',
-        borderRadius: '.5em',
-        padding: '.5em 1.2em',
-        fontWeight: 500,
-        textDecoration: 'none',
-        boxShadow: '0 2px 8px #0002',
-        transition: 'background 0.2s',
-      }}>← Voltar</Link>
-      <h1 style={{ textAlign: 'center', marginBottom: '1em', color: '#e9ecf7', fontSize: '24px' }}>Apagar tarefa</h1>
-      <FormularioTarefa
-        onAdicionar={apagarTarefa}
-        textoBotao="Confirmar exclusão"
-        titulo={tarefa.titulo}
-        descricao={tarefa.descricao}
-        disabled={true}
-      />
-    </div>
+    <Layout>
+      <h2>Apagar Tarefa</h2>
+      <p>Tem certeza que deseja apagar a tarefa "{task.titulo}"?</p>
+      <button onClick={handleDelete}>Sim, apagar</button>
+      <button onClick={() => router.push("/tarefas")}>Cancelar</button>
+    </Layout>
   );
 }
