@@ -33,7 +33,7 @@ export default function ApagarTarefaPage() {
       <Link href="/tarefas" style={{
         display: 'inline-block',
         margin: '1em 0 0 1em',
-        background: '#0a2342',
+        background: '#420a0aff',
         color: '#e9ecf7',
         border: 'none',
         borderRadius: '.5em',
