@@ -33,7 +33,7 @@ export default function RootLayout({
           <div className="container mx-auto px-4 py-3">
             <div className="flex justify-between items-center">
               <Link href="/" className="text-xl font-bold text-blue-600 hover:text-blue-700">
-                📝 Gerenciador de Tarefas
+                Gerenciador de Tarefas
               </Link>
               <Link 
                 href="/tarefas" 

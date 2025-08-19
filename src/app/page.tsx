@@ -10,22 +10,22 @@ export default function Home() {
             Organize suas tarefas de forma simples e eficiente
           </h2>
           <p className="text-gray-500">
-            Com este aplicativo você pode criar, editar, marcar como concluída e remover suas tarefas.
-            Todos os dados são salvos localmente no seu navegador.
+            Com este aplicativo você tem um CRUD de suas tarefas.
+            Todos os dados são salvos localmente no navegador.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="p-4 border rounded-lg">
-            <h3 className="font-semibold mb-2">📝 Criar Tarefas</h3>
+            <h3 className="font-semibold mb-2">Criar Tarefas</h3>
             <p className="text-sm text-gray-600">Adicione novas tarefas com título e descrição</p>
           </div>
           <div className="p-4 border rounded-lg">
-            <h3 className="font-semibold mb-2">✅ Marcar Concluídas</h3>
+            <h3 className="font-semibold mb-2">Marcar como Concluídas</h3>
             <p className="text-sm text-gray-600">Acompanhe o progresso das suas atividades</p>
           </div>
           <div className="p-4 border rounded-lg">
-            <h3 className="font-semibold mb-2">🗂️ Organizar</h3>
+            <h3 className="font-semibold mb-2">Organizar</h3>
             <p className="text-sm text-gray-600">Edite ou remova tarefas conforme necessário</p>
           </div>
         </div>

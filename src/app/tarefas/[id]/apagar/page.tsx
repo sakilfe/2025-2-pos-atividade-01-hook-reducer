@@ -48,7 +48,7 @@ export default function ApagarTarefaPage() {
             <div className="max-w-md mx-auto">
                 <div className="bg-white border border-red-200 rounded-lg p-6 mb-6">
                     <h2 className="text-xl font-semibold mb-3 text-red-600">
-                        Atenção: Esta ação não pode ser desfeita!
+                        Atenção: esta ação não pode ser desfeita.
                     </h2>
                     
                     <div className="bg-gray-50 p-4 rounded-lg mb-4">
@@ -72,7 +72,7 @@ export default function ApagarTarefaPage() {
                             onClick={handleConfirmarExclusao}
                             className="flex-1 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 font-medium"
                         >
-                            Sim, Excluir
+                            Sim, excluir
                         </button>
                         <Link
                             href="/tarefas"
