@@ -1,8 +1,8 @@
 "use client";
 
-import { useTarefas } from '../../lib/tarefaContext';
-import ListaTarefas from '../../components/ListaTarefas';
-import PageLayout from '../../components/PageLayout';
+import { useTarefas } from '@/lib/tarefaContext';
+import ListaTarefas from '@/components/ListaTarefas';
+import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
 
 export default function TarefasPage() {

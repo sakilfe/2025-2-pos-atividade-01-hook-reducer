@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import TarefaFormulario from "../../../components/TarefaFormulario";
-import PageLayout from "../../../components/PageLayout";
-import type { Tarefa, TarefaInput } from "../../../types/tarefa";
-import { useTarefas } from "../../../lib/tarefaContext";
+import TarefaFormulario from "@/components/TarefaFormulario";
+import PageLayout from "@/components/PageLayout";
+import type { Tarefa, TarefaInput } from "@/types/tarefa";
+import { useTarefas } from "@/lib/tarefaContext";
 
 export default function EditarTarefaPage() {
   const router = useRouter();

@@ -1,24 +1,26 @@
 "use client";
 
-import Layout from "@/components/arquivo";
-import TaskForm from "@/components/TarefaFormulario";
-import { Tarefa } from "@/types/tarefa";
-import { useTarefas } from "@/lib/tarefaContext";
 import { useRouter } from "next/navigation";
+import TarefaFormulario from "../../../components/TarefaFormulario";
+import PageLayout from "../../../components/PageLayout";
+import type { TarefaInput } from "../../../types/tarefa";
+import { useTarefas } from "../../../lib/tarefaContext";
 
 export default function NovaTarefaPage() {
-  const { dispatch } = useTarefas();
   const router = useRouter();
+  const { dispatch } = useTarefas();
 
-  const handleAdd = (task: Tarefa) => {
-    dispatch({ type: "ADD_TASK", payload: task });
-    router.push("/tarefas");
-  };
+  function handleSubmit(tarefa: TarefaInput) {
+    dispatch({ tipo: 'ADICIONAR', tarefa });
+    router.push('/tarefas');
+  }
 
   return (
-    <Layout>
-      <h2>Nova Tarefa</h2>
-      <TaskForm onSubmit={handleAdd} />
-    </Layout>
+    <PageLayout title="Nova Tarefa" showBackButton backUrl="/tarefas">
+      <TarefaFormulario 
+        onSubmit={handleSubmit}
+        textoBotao="Criar Tarefa"
+      />
+    </PageLayout>
   );
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import { useTarefas } from "../lib/tarefaContext";
-import TarefaItem from "./TarefaItem";
-import type { Tarefa, AcaoTarefa } from "../types/tarefa";
+import { Tarefa, AcaoTarefa } from '@/types/tarefa';
+import TarefaItem from './TarefaItem';
 
 interface ListaTarefasProps {
     tarefas: Tarefa[];

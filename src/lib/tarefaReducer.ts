@@ -1,27 +1,63 @@
-import { Tarefa } from "@/types/tarefa";
+import type { Tarefa, AcaoTarefa } from "../types/tarefa";
 
-type TarefaAction =
-  | { type: "ADD_Tarefa"; payload: Tarefa }
-  | { type: "UPDATE_Tarefa"; payload: Tarefa }
-  | { type: "DELETE_Tarefa"; payload: string }
-  | { type: "TOGGLE_Tarefa"; payload: string }
-  | { type: "LOAD_TarefaS"; payload: Tarefa[] };
+export const tarefaReducer = (state: Tarefa[], acao: AcaoTarefa): Tarefa[] => {
+    let novoEstado: Tarefa[];
 
-export function TarefaReducer(state: Tarefa[], action: TarefaAction): Tarefa[] {
-  switch (action.type) {
-    case "ADD_Tarefa":
-      return [...state, action.payload];
-    case "UPDATE_Tarefa":
-      return state.map(t => t.id === action.payload.id ? action.payload : t);
-    case "DELETE_Tarefa":
-      return state.filter(t => t.id !== action.payload);
-    case "TOGGLE_Tarefa":
-      return state.map(t =>
-        t.id === action.payload ? { ...t, done: !t.concluida } : t
-      );
-    case "LOAD_TarefaS":
-      return action.payload;
-    default:
-      return state;
-  }
-}
+    switch (acao.tipo) {
+        case 'CARREGAR': {
+            return acao.tarefas;
+        }
+        
+        case 'ADICIONAR': {
+            const novaTarefa: Tarefa = {
+                ...acao.tarefa,
+                id: crypto.randomUUID(),
+                dataCriacao: new Date(),
+                dataAtualizacao: new Date()
+            };
+            novoEstado = [...state, novaTarefa];
+            break;
+        }
+
+        case 'ATUALIZAR': {
+            novoEstado = state.map((tarefa: Tarefa) =>
+                tarefa.id === acao.id
+                    ? { ...tarefa, ...acao.tarefa, dataAtualizacao: new Date() }
+                    : tarefa
+            );
+            break;
+        }
+
+        case 'REMOVER': {
+            novoEstado = state.filter((tarefa: Tarefa) => tarefa.id !== acao.id);
+            break;
+        }
+
+        case 'COMPLETAR': {
+            novoEstado = state.map((tarefa: Tarefa) =>
+                tarefa.id === acao.id
+                    ? { ...tarefa, concluida: !tarefa.concluida, dataAtualizacao: new Date() }
+                    : tarefa
+            );
+            break;
+        }
+
+        default:
+            return state;
+    }
+
+    // Salvar no localStorage
+    try {
+        // Serializar datas como ISO strings
+        const tarefasParaSalvar = novoEstado.map(tarefa => ({
+            ...tarefa,
+            dataCriacao: tarefa.dataCriacao.toISOString(),
+            dataAtualizacao: tarefa.dataAtualizacao?.toISOString()
+        }));
+        localStorage.setItem('tarefas', JSON.stringify(tarefasParaSalvar));
+    } catch (error) {
+        console.error('Erro ao salvar no localStorage:', error);
+    }
+
+    return novoEstado;
+};

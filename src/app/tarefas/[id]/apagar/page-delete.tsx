@@ -2,9 +2,9 @@
 
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Tarefa } from '../../../../types/tarefa';
-import { useTarefas } from '../../../../lib/tarefaContext';
-import PageLayout from '../../../../components/PageLayout';
+import { Tarefa } from '@/types/tarefa';
+import { useTarefas } from '@/lib/tarefaContext';
+import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
 
 export default function ApagarTarefaPage() {
